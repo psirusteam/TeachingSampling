@@ -2,8 +2,8 @@ Package: TeachingSampling
 Type: Package
 Title: Selection of Samples and Parameter Estimation in Finite Population
 License: GPL (>= 2)
-Version: 3.2.2
-Date: 2015-04-28
+Version: 3.4.0
+Date: 2017-08-23
 Author: Hugo Andres Gutierrez Rojas <hugogutierrez@usantotomas.edu.co>
 Maintainer: Hugo Andres Gutierrez Rojas <hugogutierrez@usantotomas.edu.co>
 Depends: R (>= 2.10)
