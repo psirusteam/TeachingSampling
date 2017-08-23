@@ -1,3 +1,5 @@
+#' @export
+
 p.WR <- function(N, m, pk){
 p <- rep(0,N)
 I <- nk(N,m)

@@ -6,7 +6,9 @@ Version: 3.4.0
 Date: 2017-08-23
 Author: Hugo Andres Gutierrez Rojas <hugogutierrez@usantotomas.edu.co>
 Maintainer: Hugo Andres Gutierrez Rojas <hugogutierrez@usantotomas.edu.co>
-Depends: R (>= 2.10)
+Depends:
+    R (>= 2.11),
+    stats
 Description: Allows the user to draw probabilistic samples and make inferences from a finite population based on several sampling designs.
 Encoding: latin1
 RoxygenNote: 6.0.1

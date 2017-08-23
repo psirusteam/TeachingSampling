@@ -1,3 +1,5 @@
+#' @export
+
 GREG.SI<-function(N,n,y,x,tx,b,b0=FALSE){
   y<-as.data.frame(y)
   x<-as.matrix(x)

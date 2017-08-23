@@ -1,3 +1,5 @@
+#' @export
+
 E.STpiPS<-function(y,pik,S){
   S<-as.factor(S)
   y<-cbind(1,y)

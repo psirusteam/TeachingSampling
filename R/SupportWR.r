@@ -1,3 +1,5 @@
+#' @export
+
 SupportWR <- function(N, m, ID=FALSE){
 S=0
 a=rep(1,m)

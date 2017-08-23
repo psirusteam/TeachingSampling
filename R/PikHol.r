@@ -1,3 +1,5 @@
+#' @export
+
 PikHol <- function(n, sigma, e, Pi = PiDefault){
   N <- dim(sigma)[1]
   p <- length(n)

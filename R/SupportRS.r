@@ -1,3 +1,5 @@
+#' @export
+
 SupportRS <- function(N, ID=FALSE){
 sam <- matrix(NA, ncol=N, nrow=1)
 for(k in 1:N){

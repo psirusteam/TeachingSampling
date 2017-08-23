@@ -1,3 +1,5 @@
+#' @export
+
 nk <- function(N, m)
 {
 Q <- SupportWR(N, m, ID = FALSE)

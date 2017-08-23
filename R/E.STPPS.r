@@ -1,3 +1,5 @@
+#' @export
+
 E.STPPS<-function(y,pk,mh,S){
   S<-as.factor(S)
   y<-cbind(1,y)

@@ -1,3 +1,5 @@
+#' @export
+
 HH <- function(y,pk){
   y <- as.data.frame(y)
   m <- length(pk)

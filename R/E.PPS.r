@@ -1,3 +1,5 @@
+#' @export
+
 E.PPS<-function(y,pk){
   y<-cbind(1,y)
   y<-as.data.frame(y)

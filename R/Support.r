@@ -1,3 +1,6 @@
+#' @export
+#' @import stats
+
 Support <- function(N, n, ID=FALSE){
 m       <- matrix(0,choose(N,n),n)
 sam     <- matrix(0,choose(N,n),n)

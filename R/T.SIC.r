@@ -1,3 +1,5 @@
+#' @export
+
 T.SIC<-function(y,Cluster){
   
   Cluster<-as.factor(Cluster)

@@ -1,3 +1,5 @@
+#' @export
+
 E.SY<-function(N,a,y){
   n<-N/a
   y<-cbind(1,y)

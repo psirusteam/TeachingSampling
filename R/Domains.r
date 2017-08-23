@@ -1,3 +1,5 @@
+#' @export
+
 Domains<-function(y){
 y<-as.factor(y)
 d<-as.double(y)

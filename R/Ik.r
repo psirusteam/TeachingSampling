@@ -1,3 +1,5 @@
+#' @export
+
 Ik <- function(N,n){
 Q <- Support(N,n,ID=FALSE)
 I <- matrix(0,choose(N,n),N)

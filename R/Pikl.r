@@ -1,3 +1,5 @@
+#' @export
+
 Pikl <- function(N,n,p){
 # The support
 Sam <- Ik(N,n)

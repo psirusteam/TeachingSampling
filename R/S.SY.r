@@ -1,3 +1,5 @@
+#' @export
+
 S.SY<-function (N, a)
 {
     r <- sample(a, 1)

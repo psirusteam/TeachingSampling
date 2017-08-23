@@ -1,3 +1,5 @@
+#' @export
+
 E.2SI<-function(NI,nI,Ni,ni,y,PSU){
   y<-cbind(1,y)
   y<-as.data.frame(y)

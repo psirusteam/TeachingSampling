@@ -1,3 +1,5 @@
+#' @export
+
 E.WR<-function(N,m,y){
   y<-cbind(1,y)
   y<-as.data.frame(y)

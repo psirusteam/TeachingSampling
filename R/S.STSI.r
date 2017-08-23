@@ -1,3 +1,5 @@
+#' @export
+
 S.STSI<-function(S,Nh,nh)
 {
 S<-as.factor(S)

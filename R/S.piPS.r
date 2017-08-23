@@ -1,3 +1,5 @@
+#' @export
+
 S.piPS <- function (n, x, e = runif(length(x))) {
   if(length(x) != 1){
     N <- length(x)

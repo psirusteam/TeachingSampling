@@ -1,3 +1,5 @@
+#' @export
+
 Wk<-function(x,tx,Pik,ck,b0=FALSE){
   
   if (b0 == TRUE){

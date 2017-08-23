@@ -1,3 +1,5 @@
+#' @export
+
 S.PPS<-function(m,x){
 N<-length(x)
 pk<-x/sum(x)

@@ -1,3 +1,5 @@
+#' @export
+
 S.SI<-function(N,n,e=runif(N))
 {
 c<-matrix(0,N,1)

@@ -1,3 +1,5 @@
+#' @export
+
 S.STpiPS<-function(S, x, nh)
 {
   S<-as.factor(S)

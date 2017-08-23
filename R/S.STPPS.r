@@ -1,3 +1,5 @@
+#' @export
+
 S.STPPS<-function(S,x,mh)
 {
 S<-as.factor(S)

@@ -1,3 +1,5 @@
+#' @export
+
 E.PO<-function(y,Pik){
   y<-cbind(1,y)
   y<-as.data.frame(y)

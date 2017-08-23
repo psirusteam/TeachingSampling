@@ -1,3 +1,5 @@
+#' @export
+
 E.Quantile <- function(y, Qn, Pik) {
 y<-as.data.frame(y)
 Total<-rep(NA,dim(y)[2])

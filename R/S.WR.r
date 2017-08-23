@@ -1,3 +1,5 @@
+#' @export
+
 S.WR<-function(N,m){
 nk<-rep(0,N)
   for(k in 1:N){

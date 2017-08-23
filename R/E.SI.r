@@ -1,3 +1,5 @@
+#' @export
+
 E.SI<-function(N,n,y){
   y<-cbind(1,y)
   y<-as.data.frame(y)

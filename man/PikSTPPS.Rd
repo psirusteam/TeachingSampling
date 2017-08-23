@@ -20,6 +20,11 @@ A vector of inclusion probablilities in a stratified finite population.
 For a given sample size, in each stratum, this function returns a vector of first order
 inclusion probabilities for an stratified sampling design proportional to an auxiliary variable.
 }
+\details{
+is not always less than unity. A sequential algorithm must be used in order to ensure that for 
+every unit in the population the inclusion probability gives a proper value; i.e. less or equal
+to unity.
+}
 \examples{
 ############
 ## Example 1

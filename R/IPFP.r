@@ -1,3 +1,5 @@
+#' @export
+
 IPFP <- function(Table,Col.knw,Row.knw,tol=0.0001)
 {
 Table <- as.matrix(Table)

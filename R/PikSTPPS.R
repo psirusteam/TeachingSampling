@@ -1,4 +1,3 @@
-#' @import TeachingSampling
 #' @export
 #' 
 #' @title
@@ -9,10 +8,6 @@
 #' @return 
 #' A vector of inclusion probablilities in a stratified finite population.
 #' @details
-#' Consider a population \eqn{U} divide in \eqn{H} strata. within stratum \eqn{h} (\eqn{h=1, \ldots, H}),
-#' for a given vector of auxiliary information with value \eqn{x_k} for the \eqn{k}-th unit and 
-#' population total \eqn{t_{xh}}, the following expression 
-#' \deqn{\pi_k=n_h\times \frac{x_k}{t_{xh}}
 #' is not always less than unity. A sequential algorithm must be used in order to ensure that for 
 #' every unit in the population the inclusion probability gives a proper value; i.e. less or equal
 #' to unity.

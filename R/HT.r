@@ -1,3 +1,5 @@
+#' @export
+
 HT<-function(y,Pik){
 y<-t(as.matrix(y))
 pik<-as.matrix(Pik)

@@ -1,3 +1,5 @@
+#' @export
+
 VarHT<-function(y, N, n, p){
 Ind <- Ik(N,n)
 pi1 <- as.matrix(Pik(p, Ind))

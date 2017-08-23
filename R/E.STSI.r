@@ -1,3 +1,5 @@
+#' @export
+
 E.STSI<-function(S,Nh,nh,y){
   S<-as.factor(S)
   y<-cbind(1,y)

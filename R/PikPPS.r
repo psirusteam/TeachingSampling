@@ -1,3 +1,5 @@
+#' @export
+
 PikPPS<-function(n,x){
 pik<- n*x/sum(x)
 while((sum(pik>1))!=0){

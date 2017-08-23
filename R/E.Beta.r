@@ -1,3 +1,5 @@
+#' @export
+
 E.Beta<-function(N, n, y, x, ck=1, b0=FALSE){
   if (b0 == TRUE) {
     x<-as.data.frame(cbind(1,x))

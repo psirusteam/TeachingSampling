@@ -1,3 +1,5 @@
+#' @export
+
 OrderWR<-function(N,m,ID=FALSE){
 b<-c(1:N)
 grilla<-function(a){

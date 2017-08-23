@@ -1,3 +1,5 @@
+#' @export
+
 E.BE<-function(y,prob){
   y<-cbind(1,y)
   y<-as.data.frame(y)
