@@ -1,0 +1,50 @@
+library(MASS)
+library(lme4)
+
+generate_data = function(
+  n # number of units
+  , k # number of trials within each condition within each unit
+  , I # population intercept
+  , vI # across-units variance of intercepts
+  , A # population A effect
+  , vA # across-units variance of A effects
+  , rIA # across-units correlation between intercepts and A effects
+){
+  Sigma = c(
+    vI , sqrt(vI*vA)*rIA
+    , sqrt(vI*vA)*rIA , vA
+  )
+  Sigma = matrix(Sigma,2,2)
+  means = mvrnorm(n,c(I,A),Sigma)
+  temp = expand.grid(A=c('a1','a2'),value=0)
+  temp$A = factor(temp$A)
+  contrasts(temp$A) = contr.sum
+  from_terms = terms(value~A)
+  mm = model.matrix(from_terms,temp)
+  data = expand.grid(A=c('a1','a2'),unit=1:n,trial=1:k)
+  for(i in 1:n){
+    data$value[data$unit==i] = rbinom(k*2,1,plogis(as.numeric(mm %*% means[i,])))
+  }
+  data$unit = factor(data$unit)
+  data$A = factor(data$A)
+  contrasts(data$A) = contr.sum
+  return(data)
+}
+
+
+this_data = generate_data(
+  n = 100 # number of units
+  , k = 100 # number of trials within each condition within each unit
+  , I = 2 # population intercept
+  , vI = .1 # across-units variance of intercepts
+  , A = .5 # population A effect
+  , vA = .2 # across-units variance of A effects
+  , rIA = .6 # across-units correlation between intercepts and A effects
+)
+
+fit = lmer(
+  data = this_data
+  , formula = value ~ (1+A|unit) + A
+  , family = binomial
+)
+print(fit)

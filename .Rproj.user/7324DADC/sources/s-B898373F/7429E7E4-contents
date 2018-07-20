@@ -1,0 +1,508 @@
+---
+title: "Análisis de encuestas de hogares con R"
+subtitle: "Principios de estimación"
+author: "Andrés Gutiérrez, Ph.D."
+date: "CEPAL - Unidad de Estadísticas Sociales"
+output:
+  beamer_presentation:
+    colortheme: dove
+    fonttheme: default
+    #incremental: no
+    theme: Berkeley
+    toc: yes
+    slide_level: 2
+    #highlight: pygments
+  ioslides_presentation:
+    incremental: yes
+    widescreen: yes
+    toc: yes
+    logo: logo.jpg
+    #smaller: true
+Email: andres.gutierrez@cepal.org
+---
+
+```{r setup, include=FALSE}
+library(printr)
+library(ggplot2)
+
+#knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+ggplot2::theme_set(theme_bw())
+```
+
+# Pasos inciales
+
+## Cargando las librerías necesarias
+
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
+rm(list = ls())
+
+library(dplyr)
+library(survey)
+library(srvyr)
+library(ggplot2)
+library(samplesize4surveys)
+```
+
+
+## Cargue de la base de datos
+
+```{r}
+setwd("/Users/psirusteam/Desktop/Dropbox/CEPAL/HouseholdRCourse/Datos")
+getwd()
+dir()
+
+data2 <- readRDS("BRA_2015N.rds")
+
+data2$upm <- data2$'_upm'
+data2$wk <- data2$'_fep'
+data2$one <- 1
+```
+
+## Redefiniendo los rótulos de los estados
+
+```{r}
+data2$deptos <- factor(data2$uf, 
+ levels = c(11:17, 21:29, 31:33, 35, 41:43, 50:53), 
+ labels = c("RO", "AC", "AM", "RR", "PA", 
+ "AP", "TO", "MA", "PI", "CE", "RN", "PB", 
+ "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP",
+ "PR", "SC", "RS", "MS", "MT", "GO", "DF"))
+```
+
+## Diseño de la PNAD con `survey`
+
+```{r}
+PNAD.design <- data2 %>%
+  as_survey_design(ids = upm, strat = deptos, 
+                   weights = wk, nest = TRUE)
+
+sum(weights(PNAD.design))
+```
+
+## Calibración de la PNAD con `survey`
+
+```{r}
+Pop.personas <- 205962108
+
+PNAD.cal <- calibrate(PNAD.design, formula = ~ 1, 
+            population = Pop.personas)
+
+data2$wkcal <- weights(PNAD.cal)
+sum(weights(PNAD.cal))
+```
+
+## Calibración de la PNAD con `survey`
+
+```{r}
+summary(PNAD.cal)
+```
+
+
+# Estimación de parámetros básicos
+
+## Estimadores insesgados 
+
+Si el interés está en estimar un total^[La mayoría de indicadores sociales a nivel nacional pueden verse como funciones de totales de una o más variables de interés.] $t_y=\sum_U y_k$, el estimador de expansión provee una metodología que induce insesgamiento.
+
+\begin{equation*}
+\hat{t}_y = \sum_s w_k y_k
+\end{equation*}
+
+La esperanza matemática debe calcularse bajo el diseño de muestre que fue propuesto para la encuesta de hogares. Luego, la esperanza del estimador debe ser igual al parámetro de interés.
+
+\begin{equation*}
+E_p(\hat{t}_y) = \sum_U y_k = t_y
+\end{equation*}
+
+## Forma funcional del estimador
+
+- En presencia de esquemas de estratificación y selección de conglomerados y varias etapas, el peso de muestreo resulta ser el producto de los pesos condicionales que surgen en los subsecuentes procesos de selección probabilística. 
+
+- El peso final de muestreo resulta ser por lo general una multiplicación de factores de expansión en cada etapa del esquema de muestreo. 
+
+## Estimación usual
+
+Si el diseño de la encuesta es estratificado por regiones $h$ (agrupaciones de municipios), con tres etapas de selección dentro de cada estrato (la primera etapa con selección de municipios $i$ dentro del estrato, la segunda con selección de segmentos cartográficos $j$ y la última con selección de hogares $k$), entonces el peso de muestreo final y el estimador del total estará dado por la siguiente expresión
+
+$$
+\hat{t}_y = \sum_s w_j y_k = \sum_h \sum_{i \in s_h} \sum_{j \in s_{hi}} \sum_{k \in s_{hij}} w_{hijk} y_{hijk}
+$$
+
+## El error de muestreo
+
+- Para la estimación de la varianza de los estimadores de interés en encuestas multi-etápicas, los programas computacionales existentes utilizan una aproximación conocida como la técnica del último conglomerado. 
+- Esta aproximación sólo tiene en cuenta la varianza de los estimadores en la primera etapa de muestreo
+- Supone que ese muestreo fue realizado con reemplazo. 
+- Los procedimientos de muestreo en etapas posteriores de la selección son ignorados a menos que el factor de corrección para poblaciones finitas sea importante a nivel municipal. 
+
+## Estimador de la varianza
+
+El estimador de la varianza de $\hat{t}_y$ estaría dado por
+
+$$
+\hat{V}(\hat{t}_{y}) = 
+\sum_h\frac{n_h}{n_h-1}\sum_{i\in s_h}\left(\hat{t}_{y_i}-\overline{\hat{t}}_{y_h}\right)^2
+$$
+
+En donde $\hat{t}_{y_i} = \sum_{k \in s_{hi}} w_k y_k$, $\bar{\hat{t}}_{y_h}=(1/n_h)\sum_{i \in s_h}\hat{t}_{y_i}$ y $n_h$ es el número de UPM seleccionadas en el estrato $h$. 
+
+
+## Medidas del error de muestreo
+
+Suponga que $\theta$ es el parámetro de interés, $\hat{\theta}$ es el estimador y $\hat{V}(\theta)$ es su varianza, entonces:
+
+1. El error estándar se define como 
+
+$$
+se(\hat\theta) = \sqrt{\hat{V}(\theta)}
+$$
+
+2. El coeficiente de variación es
+
+$$
+cv(\hat\theta) = \frac{\sqrt{\hat{V}(\theta)}}{\hat\theta} = \frac{se(\hat\theta)}{\hat\theta}
+$$
+
+3. El intervalo de confianza es
+
+$$
+ic(\hat\theta) 
+= (\hat\theta - 1.96 *  se(\hat\theta), 
+\  \ \hat\theta + 1.96 *  se(\hat\theta))
+$$
+
+## Estimación en dominios
+
+- La estimación por dominios se caracteriza por el desconocimiento de la pertenencia de las unidades poblacionales al dominio. 
+
+- Es decir, para conocer cuáles unidades de la población pertenecen al dominio, es necesario realizar el proceso de medición.
+
+## Estimación en dominios
+
+La identificación de los dominios se logra una vez la información de los elementos ha sido registrada. Los dominios tienen que cumplir las siguientes características:
+
+1. Ningún elemento de la población puede pertenecer a dos dominios.
+1. Todo elemento de la población debe pertenecer a un único dominio.
+1. La reunión de todos los dominios es la población del estudio.
+ 
+
+## Estimación en dominios
+
+Un dominio $U_d$ es una sub-población específica o subgrupo poblacional que cumple las siguientes condiciones:
+
+1. $U_d \subset U$, tal que $U=\bigcup_{d=1}^DU_d$
+1. Si $k\in U_l$, entonces $k \notin U_d$ para $d\neq l$
+1. El número de elementos en el dominio $U_d$ es $N_d$ y es llamado \textbf{tamaño absoluto} del dominio.
+1. La proporción de elementos en el dominio $U_d$ con respecto al tamaño poblacional es $P_d=\dfrac{N_d}{N}$ y se conoce como \textbf{tamaño relativo} del dominio.
+ 
+
+## Función indicatriz del dominio
+
+Sea $z_{dk}$ la función indicadora del dominio $U_d$ está dada por
+\begin{equation}
+z_{dk}= \begin{cases} 1 &\text{si $k\in U_d$}\\
+0  &\text{en otro caso}
+      \end{cases}
+\end{equation}
+
+## Función indicatriz del dominio
+
+- Al multiplicar la variable de pertenencia $z_{dk}$ por el valor de la característica de interés $y_k$, se crea una nueva variable $y_{dk}$ dada por $$y_{dk}=z_{dk}*y_k$$
+
+- Una vez construida se pueden utilizar los principios del estimador de Horvitz-Thompson para hallar un estimador insesgado del total de la característica de interés en el dominio $U_d$.
+
+## Indicadores de interés
+
+- El total de la variable de interés en el dominio $U_d$ está dado por
+\begin{equation}
+t_{yd}=\sum_{U}y_{dk},
+\end{equation}
+
+- El tamaño del dominio $U_d$ toma la siguiente expresión
+\begin{equation}
+N_d=\sum_{U}z_{dk},
+\end{equation}
+
+## Indicadores de interés
+
+- La media de la característica de interés en el dominio $U_d$ se escribe como
+\begin{equation}
+\bar{y}_{U_d}=\frac{t_{yd}}{N_d}=\frac{\sum_{U}y_{dk}}{N_d}
+\end{equation}
+
+- La proporción del dominio $U_d$ se escribe como
+\begin{equation}
+P_{d}=\frac{N_d}{N}=\frac{\sum_{U}z_{dk}}{N}
+\end{equation}
+
+# Estimación en PNAD
+
+## Totales
+
+A continuación se muestra la estimación del ingreso total de las personas en Brasil junto con su coeficiente de variación. 
+
+
+```{r}
+PNAD.cal %>%
+  summarise(Ing.t = survey_total(ingcorte, 
+             deff = T, vartype = c("cv", "ci")))
+```
+
+## Totales
+
+A continuación se muestra la estimación del ingreso total por sexo de las personas en Brasil junto con su coeficiente de variación. 
+
+```{r}
+PNAD.cal %>% group_by(sexo) %>%
+  summarise(Ing.t = survey_total(ingcorte, 
+            deff = T, vartype = "cv"))
+```
+
+## Conteos y tamaños
+
+El tamaño de un subgrupo poblacional $U_d$ (caso particular de un total) y su estimación es 
+
+$$
+\hat{N}_d = \sum_s w_k I_{dk} = \sum_{s_d} w_k
+$$
+
+Su varianza está dada por
+
+$$
+\hat{V}(\hat{N}_d) = 
+\sum_h\frac{n_h}{n_h-1}\sum_{i\in s_h}\left(\hat{N}_{d_i}-\overline{\hat{N}}_{d_h}\right)^2
+$$
+
+## Conteos y tamaños
+
+A continuación se muestra la estimación del número de hombres y mujeres en Brasil.
+
+```{r}
+PNAD.cal %>% group_by(sexo) %>%
+  summarise(n = unweighted(n()),
+            N.sexo = survey_total(one, 
+            vartype=c("cv", "ci")))
+```
+
+## Conteos y tamaños
+
+A continuación se muestra la estimación del número de hombres y mujeres en áreas urbanas y rurales en Brasil.
+
+```{r}
+PNAD.cal %>% group_by(sexo, area_ee) %>%
+  summarise(n = unweighted(n()),
+  N.sxarea = survey_total(one, 
+  vartype=c("cv", "ci")))
+```
+
+## Proporciones
+
+La estimación de una proporción de una subpoblación $U_d$. 
+
+$$
+\hat P_d = \frac{\hat N_d}{N}
+$$
+
+Su varianza está dada por
+
+$$
+\hat{V}(\hat P_d) = \frac{\hat{V}(\hat N_d)}{N^2} 
+$$
+
+
+## Proporciones
+
+A continuación se muestra la proporción de personas en las áreas urbana y rural de Brasil. 
+
+```{r}
+PNAD.cal %>% group_by(area_ee) %>%
+  summarise(area.prop = survey_mean( , vartype = "cv"))
+```
+
+## Proporciones
+
+A continuación se muestra la proporción marginal de hombres y mujeres en las áreas urbana y rural de Brasil. 
+
+```{r}
+PNAD.cal %>% group_by(area_ee, sexo) %>%
+  summarise(sxarea.prop = survey_mean(, 
+  vartype=c("cv", "ci")))
+```
+
+## Proporciones
+
+A continuación se muestra la proporción de hombres y mujeres en las áreas urbana y rural de Brasil. 
+
+```{r}
+prop.as <- svymean(~interaction(area_ee, sexo), 
+                   PNAD.cal)
+as.data.frame(prop.as)
+```
+
+## Medias
+
+La estimación de la media poblacional es
+
+$$\hat{\bar{y}}_U = \frac{\sum_s w_k y_k}{N} = \frac{\hat{t}_{y}}{N}$$
+
+Su varianza está dada por
+
+$$
+\hat{V}(\hat{\bar{y}}_U) = \frac{1}{N^2} 
+\sum_h\frac{n_h}{n_h-1}\sum_{i\in s_h}\left(\hat{t}_{y_i}-\overline{\hat{t}}_{y_h}\right)^2
+$$
+
+## Medias
+
+La media del ingreso a nivel nacional está dada por el siguiente código. 
+
+```{r}
+PNAD.cal %>%
+  summarise(Ing.m = survey_mean(ingcorte, 
+            deff = TRUE, vartype = "cv"))
+```
+
+## Medias
+
+La siguiente es la estimación por estados del ingreso medio.
+
+```{r, eval=FALSE}
+PNAD.cal %>% group_by(deptos) %>%
+  summarise(Ing.m = survey_mean(ingcorte, 
+  deff = TRUE, vartype = "cv")) %>%
+  arrange(desc(Ing.m))
+```
+
+## Medias
+
+```{r, echo = FALSE}
+PNAD.cal %>% group_by(deptos) %>%
+  summarise(Ing.m = survey_mean(ingcorte, 
+  deff = TRUE, vartype = "cv")) %>%
+  arrange(desc(Ing.m))
+```
+
+## Medias
+
+Al parecer existe una brecha entre el ingreso medio de los hombre y las mujeres.
+
+```{r}
+PNAD.cal %>% group_by(sexo) %>%
+  summarise(Ing.m = survey_mean(ingcorte, 
+  vartype=c("cv", "ci"))) %>%
+  arrange(desc(Ing.m))
+```
+
+## Medias
+
+A continuación se muestra el ingreso medio en las áreas rural y urbana.
+
+```{r}
+PNAD.cal %>% group_by(area_ee) %>%
+  summarise(Ing.m = survey_mean(ingcorte, 
+  vartype=c("cv", "ci")))
+```
+
+# Estimación de parámetros no lineales
+
+
+## Razones
+
+El estimador de una razón poblacional entre dos totales es
+
+$$
+\hat{R}_{yz} = \frac{\hat t_y}{\hat t_z}
+$$
+
+Y su varianza está dada por
+
+$$
+\hat{V}(\hat{R}_{yz}) = 
+\sum_h\frac{n_h}{n_h-1}\sum_{i\in s_h}\left(\hat{t}_{e_i}-\overline{\hat{t}}_{e_h}\right)^2
+$$
+
+En donde $e_k = \frac{1}{\hat t_z^2}(y_k - \hat{R}_{yz} z_k)$.
+
+## Razones
+
+Para hallar la razón entre las personas que aportan para jubilación entre hombres y mujeres se utiliza el comando `Domains` para crear las variables de interés. 
+
+```{r}
+data2$Hombre <- Domains(data2$sexo)[,1]
+data2$Mujer <- Domains(data2$sexo)[,2]
+
+PNAD.cal <- update(PNAD.cal, Hombre = data2$Hombre, 
+                   Mujer = data2$Mujer)
+```
+
+## Razones
+
+El 60.7% de los hombres aporta para pensión.
+
+```{r}
+PNAD.cal %>% 
+  summarise(Cot.h = survey_ratio(cotiza_ee, 
+            Hombre, vartype=c("cv", "ci")))
+```
+
+## Razones
+
+El 57.2% de las mujeres aporta para pensión.
+
+```{r}
+PNAD.cal %>% 
+  summarise(Cot.m = survey_ratio(cotiza_ee, 
+            Mujer, vartype=c("cv", "ci")))
+```
+
+## Percentiles
+
+El estimador del percentil poblacional $q$ se calcula mediante la siguiente expresión
+
+$$
+\hat{Q}_q = \hat{F}^{-1}(q)
+$$
+
+En donde $\hat{F}^{-1}$ es la función inversa de $\hat{F}$ dada por 
+
+$$
+\hat{F}(y)=\dfrac{\hat{t}_{z_y}}{\hat{N}}=\dfrac{\sum_{k \in s} w_k z_{y_k}}{\sum_{k \in s} w_k}
+$$
+Y la variable $z_{y_k}$ está definida como
+
+$$
+z_{y_k} = 
+\begin{cases}
+1, \ \text{ si $y_k \leq y$}\\ 
+0, \ \text{ en otro caso}
+\end{cases}
+$$
+
+## Medianas y Percentiles
+
+A continuación se muestra el percentil 10 y la mediana del ingreso en las áreas rurales y urbanas. 
+
+```{r}
+PNAD.cal %>% group_by(area_ee) %>%
+  summarise(q.i = survey_quantile(ingcorte, 
+                  quantiles = c(0.1, 0.5)))
+```
+
+## Medianas y Percentiles
+
+A continuación se muestra el percentil 20 y el percentil 80 del ingreso por sexo. 
+
+```{r}
+PNAD.cal %>% group_by(sexo) %>%
+  summarise(q.i = survey_quantile(ingcorte, 
+                  quantiles = c(0.2, 0.8)))
+```
+
+
+## ¡Gracias!
+
+<div class="yellow">
+*Email*: andres.gutierrez@cepal.org
+</div>
+

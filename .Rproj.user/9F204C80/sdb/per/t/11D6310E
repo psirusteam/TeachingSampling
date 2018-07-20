@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' @export\n\nS.piPS <- function (n, x, e = runif(length(x))) {\n  if(length(x) != 1){\n    N <- length(x)\n    x1 <- sort(x, decreasing = TRUE)\n    Pik <- PikPPS(n, x1)\n    V <- cumsum(Pik)\n    nk <- matrix(0, N, 1)\n    d <- matrix(0, N, 1)\n    I <- matrix(0, N, 1)\n    sam <- matrix(0, N, 1)\n    if (e[1] < Pik[1]) {\n      I[1] <- 1\n      sam[1] <- 1\n    }\n    for (k in 2:N) {\n      nk[k] <- nk[k - 1] + I[k - 1]\n      d[k] <- Pik[k] * (n - nk[k])/(n - V[k - 1])\n      if (e[k] <= d[k]) {\n        I[k] <- 1\n        sam[k] <- cumsum(I[1:(k - 1)])[(k - 1)] + I[k]\n      }\n    }\n    samp <- rev(order(x))[which(sam != 0)]\n    Pik1 <- PikPPS(n, x)\n    Pik.s <- Pik1[samp]\n    return(cbind(samp, Pik.s))\n  }\n  \n  if(length(x) == 1){\n    Pik.s <- 1\n    samp <- 1\n    return(cbind(samp, Pik.s))\n  }\n}",
+    "created" : 1503524886008.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2604147413",
+    "id" : "11D6310E",
+    "lastKnownWriteTime" : 1503522088,
+    "last_content_update" : 1503522088,
+    "path" : "~/Desktop/Dropbox/Producción/Software/github/TeachingSampling/R/S.piPS.r",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
