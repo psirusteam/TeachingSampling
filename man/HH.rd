@@ -127,4 +127,5 @@ data.frame(Ind, Est, p)
 sum(Est*p)
 sum(y)
 }
+
 \keyword{survey}
