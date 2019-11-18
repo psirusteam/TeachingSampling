@@ -40,7 +40,7 @@ N3<-summary(Level)[[3]]
 N1;N2;N3
 
 # Defines the sample size at each stratum
-n1<-70
+n1<-N1
 n2<-100
 n3<-200
 nh<-c(n1,n2,n3)

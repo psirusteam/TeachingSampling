@@ -34,7 +34,7 @@ attach(Lucy)
 # Level is the stratifying variable
 summary(Level)
 # Defines the sample size at each stratum
-m1<-70
+m1<-83
 m2<-100
 m3<-200
 mh<-c(m1,m2,m3)
