@@ -41,7 +41,7 @@ E.STpiPS<-function(y,pik,S){
   
   for(i in 1:dim(y)[2]){
     Strata[1,,][(length(nh)+1),][i]<-sum(Strata[,,i][1,][1:length(nh)])
-    Strata[2,,][(length(nh)+1),][i]<-sqrt(sum(Strata[,,i][2,][1:length(nh)]))
+    Strata[2,,][(length(nh)+1),][i]<-sqrt(sum(Strata[,,i][2,][1:length(nh)]^2))
     Strata[3,,][(length(nh)+1),][i]<-100*sqrt(Strata[2,,][(length(nh)+1),][i])/Strata[1,,][(length(nh)+1),][i]
     
     N <- sum(1/pik)
