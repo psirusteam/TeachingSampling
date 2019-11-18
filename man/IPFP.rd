@@ -12,7 +12,7 @@ IPFP(Table, Col.knw, Row.knw, tol=0.0001)
 \item{tol}{The control value, by default equal to 0.0001}
 }
 \details{Adjust a contingency table on the know margins of the population with the Raking Ratio method}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Deming, W. & Stephan, F. (1940), On a least squares adjustment of a sampled frequency 
 table when the expected marginal totals are known. \emph{Annals of Mathematical Statistics}, 11, 427-444.\cr

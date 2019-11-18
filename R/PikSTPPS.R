@@ -11,7 +11,7 @@
 #' is not always less than unity. A sequential algorithm must be used in order to ensure that for 
 #' every unit in the population the inclusion probability gives a proper value; i.e. less or equal
 #' to unity.
-#' @author Hugo Andres Gutierrez Rojas <hugogutierrez at usantotomas.edu.co>
+#' @author Hugo Andres Gutierrez Rojas <hagutierrezro at gmail.com>
 #' @param S Vector identifying the membership to the strata of each unit in the population.
 #' @param x Vector of auxiliary information for each unit in the population.
 #' @param nh The vector defningn the sample size in each stratum.

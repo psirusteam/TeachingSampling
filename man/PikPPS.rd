@@ -20,7 +20,7 @@ is not always less than unity. A sequential algorithm must be used in order to e
 unit in the population the inclusion probability gives less or equal to unity.}
 \value{The function returns a vector of inclusion probabilities of size \eqn{N}. 
 Every element of this vector is a value between zero and one.}   
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

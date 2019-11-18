@@ -18,7 +18,7 @@ VarHT(y, N, n, p)
 \deqn{Var_p(\hat{t}_{y,\pi})=\sum_{k\in U}\sum_{l \in U}\Delta_{kl}\frac{y_k}{\pi_k}\frac{y_l}{\pi_l}}
 }
 \value{The function returns the value of the theoretical variances of the Horviz-Thompson estimator.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

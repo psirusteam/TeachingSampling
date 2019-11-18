@@ -14,7 +14,7 @@ S.WR(N, m)
 }
 \details{The selected sample is drawn according to a sequential procedure algorithm based on a binomial distribution}
 \value{The function returns a vector of size \eqn{m}. Each element of this vector indicates the unit that was selected.}  
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{      
 Tille, Y. (2006), \emph{Sampling Algorithms}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

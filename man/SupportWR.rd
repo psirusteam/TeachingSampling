@@ -17,8 +17,7 @@ SupportWR(N, m, ID=FALSE)
 of the coordinates of the sample are also in the support}
 \value{The function returns a matrix of \eqn{binom(N+m-1)(m)} rows and \eqn{m} columns. Each row of this matrix 
 corresponds to a possible sample}
-\author{Jorge Eduardo Ortiz Pinilla \email{jorgeortiz@usantotomas.edu.co} with contributions from 
-Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Ortiz, J. E. (2009), \emph{Simulacion y metodos estadisticos}. Editorial Universidad Santo Tomas. \cr
 Tille, Y. (2006), \emph{Sampling Algorithms}. Springer.\cr

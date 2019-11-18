@@ -16,7 +16,7 @@ Wk(x,tx,Pik,ck,b0)
 \deqn{\sum_{k\in S}w_kx_k=\sum_{k\in U}x_k}
 }
 \value{The function returns a vector of calibrated weights.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

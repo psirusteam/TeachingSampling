@@ -20,9 +20,7 @@ Pikl(N, n, p)
 }
 \value{The function returns a symmetric matrix of size \eqn{N \times N} containing the second-order inclusion probabilities 
 for each pair of units in the finite population.}
-\author{Helbert Novoa \email{helbertnovoa@ymail.com} with contributions from 
-Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co} 
-and Hanwen Zhang \email{hanwenzhang@usantotomas.edu.co} }
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

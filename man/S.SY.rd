@@ -14,7 +14,7 @@ S.SY(N, a)
 }
 \details{The selected sample is drawn according to a random start.}
 \value{The function returns a vector of size \eqn{n}. Each element of this vector indicates the unit that was selected.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}. The author acknowledges to
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}. The author acknowledges to
 Kristina Stodolova \email{Kristyna.Stodolova@seznam.cz} for valuable suggestions.}
 \references{
 Madow, L.H. and Madow, W.G. (1944), On the theory of systematic sampling. \emph{Annals of Mathematical Statistics}. 15, 1-24.\cr

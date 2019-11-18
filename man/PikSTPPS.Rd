@@ -87,5 +87,5 @@ Sarndal, C-E. and Swensson, B. and Wretman, J. (2003), \emph{Model Assisted Surv
 \code{\link{PikHol}, \link{PikPPS}, \link{S.STpiPS}}
 }
 \author{
-Hugo Andres Gutierrez Rojas <hugogutierrez at usantotomas.edu.co>
+Hugo Andres Gutierrez Rojas <hagutierrezro at gmail.com>
 }

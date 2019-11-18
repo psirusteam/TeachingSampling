@@ -6,7 +6,7 @@
 This data set corresponds to a random sample of BigLucy. It contains some financial variables of 2396 industrial companies of a city in a particular fiscal year.
 }
 \seealso{
-\code{\link{BigLucy}}
+\code{\link{BigLucy}, \link{BigCity}}
 }
 \usage{Lucy}
 \format{
@@ -23,7 +23,7 @@ revenues and adjusting for the cost of doing business}
 \item{SPAM}{Indicates if the company uses the Internet and WEBmail options in order to make self-propaganda.}
 }
 }
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.
 Editorial Universidad Santo Tomas.

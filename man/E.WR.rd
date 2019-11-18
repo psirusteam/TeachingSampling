@@ -18,7 +18,7 @@ unit in the selected sample}
 \details{Returns the estimation of the population total of every single variable of interest, its estimated variance and its
 estimated coefficient of variation estimated under an simple random with replacement design}
 \value{The function returns a data matrix whose columns correspond to the estimated parameters of the variables of interest}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

@@ -16,7 +16,7 @@ unit in the selected sample}
 \details{Returns the estimation of the population total of every single variable of interest, its estimated variance and its estimated coefficient of variation under a \eqn{\pi}PPS sampling design. This function uses the results of approximate expressions for
 the estimated variance of the Horvitz-Thompson estimator}
 \value{The function returns a data matrix whose columns correspond to the estimated parameters of the variables of interest}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Matei, A. and Tille, Y. (2005), Evaluation of Variance Approximations and Estimators in Maximun
 Entropy Sampling with Unequal Probability and Fixed Sample Design. \emph{Journal of Official Statistics}. Vol 21, 4, 543-570.\cr

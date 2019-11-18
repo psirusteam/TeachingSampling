@@ -17,7 +17,7 @@ OrderWR(N,m,ID=FALSE)
 of ordered samples induced by a with replacement sampling design.}
 \value{The function returns a matrix of \eqn{N^m} rows and \eqn{m} columns. Each row of this matrix
 corresponds to a possible ordered sample.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}. The author acknowledges to Hanwen Zhang \email{hanwenzhang@usantotomas.edu.co} for valuable suggestions.}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}. The author acknowledges to Hanwen Zhang for valuable suggestions.}
 \references{
 Tille, Y. (2006), \emph{Sampling Algorithms}. Springer\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

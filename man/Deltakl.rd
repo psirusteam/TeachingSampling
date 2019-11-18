@@ -18,7 +18,7 @@ Deltakl(N, n, p)
 \eqn{\Delta_{kl}=\pi_{kl}-\pi_k\pi_l}
 }
 \value{The function returns a symmetric matrix of size \eqn{N \times N} containing the variances-covariances among the sample membership indicators for each pair of units in the finite population.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

@@ -15,7 +15,7 @@ Domains(y)
 \value{The function returns a \eqn{n\times p} matrix, where \eqn{n} is the number of units in the selected 
 sample and \eqn{p} is the number of categories of the domain of interest. The values of this matrix are zero,  if the unit does not 
 belongs to a specified category and one, otherwise.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

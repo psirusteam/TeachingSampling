@@ -15,7 +15,7 @@ IkWR(N, m)
 }
 \value{The function returns a matrix of \eqn{binom(N+m-1)(m)} rows and \eqn{N} columns. The \eqn{k}th column corresponds to the sample 
 membership indicator, of the \eqn{k}th unit, to a possible sample. It returns a value of 1, even if the element is selected more than once in a with replacement sample.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

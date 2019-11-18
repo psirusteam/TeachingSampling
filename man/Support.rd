@@ -17,7 +17,7 @@ Support(N, n, ID=FALSE)
 of the coordinates of the sample are also in the support}
 \value{The function returns a matrix of \eqn{binom(N)(n)} rows and \eqn{n} columns. Each row of this matrix 
 corresponds to a possible sample}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Tille, Y. (2006), \emph{Sampling Algorithms}. Springer\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

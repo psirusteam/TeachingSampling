@@ -16,7 +16,7 @@ S.piPS(n, x, e)
 \details{The selected sample is drawn according to the Sunter method (sequential-list procedure)}
 \value{The function returns a matrix of \eqn{m} rows and two columns. Each element of the first column indicates the unit that
 was selected. Each element of the second column indicates the selection probability of this unit} 
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

@@ -17,7 +17,7 @@ S.SI(N, n, e=runif(N))
 \value{The function returns a vector of size \eqn{N}. Each element of this vector indicates if the unit was selected. Then, 
 if the value of this vector for unit \eqn{k} is zero, the unit \eqn{k} was not selected in the sample; otherwise, the unit was
 selected in the sample.}   
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{      
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Fan, C.T., Muller, M.E., Rezucha, I. (1962), Development of sampling plans by using sequential

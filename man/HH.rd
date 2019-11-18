@@ -18,7 +18,7 @@ where \eqn{y_i} is the value of the variables of interest for the \eqn{i}th unit
 selection probability. This estimator is restricted to with replacement sampling designs.
 }
 \value{The function returns a vector of total population estimates for each variable of interest, its estimated standard error and its estimated coefficient of variation.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Sarndal, C-E. and Swensson, B. and Wretman, J. (1992), \emph{Model Assisted Survey Sampling}. Springer.\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

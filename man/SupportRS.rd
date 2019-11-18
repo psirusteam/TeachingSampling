@@ -14,7 +14,7 @@ SupportRS(N, ID=FALSE)
 }
 \details{A support is defined as the set of samples such that for any sample in the support, all the permutations of the coordinates of the sample are also in the support}
 \value{The function returns a matrix of \eqn{2^N} rows and \eqn{N} columns. Each row of this matrix corresponds to a possible sample}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Tille, Y. (2006), \emph{Sampling Algorithms}. Springer\cr
 Gutierrez, H. A. (2009), \emph{Estrategias de muestreo: Diseno de encuestas y estimacion de parametros}.

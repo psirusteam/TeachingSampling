@@ -22,7 +22,7 @@ and
 Note that \eqn{\sigma^2_{qk}} is a size measure associated with the k-th element in the q-th characteristic of interest.
 }
 \value{The function returns a vector of inclusion probabilities.}
-\author{Hugo Andres Gutierrez Rojas \email{hugogutierrez@usantotomas.edu.co}}
+\author{Hugo Andres Gutierrez Rojas \email{hagutierrezro@gmail.com}}
 \references{
 Holmberg, A. (2002), On the Choice of Sampling Design under GREG Estimation in Multiparameter Surveys.
 \emph{RD Department, Statistics Sweden}.\cr
