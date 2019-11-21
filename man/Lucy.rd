@@ -8,7 +8,7 @@ This data set corresponds to a random sample of BigLucy. It contains some financ
 \seealso{
 \code{\link{BigLucy}, \link{BigCity}}
 }
-\usage{Lucy}
+\usage{data(Lucy)}
 \format{
   \describe{
 \item{ID}{The identifier of the company. It correspond to an alphanumeric sequence (two letters and three digits)}

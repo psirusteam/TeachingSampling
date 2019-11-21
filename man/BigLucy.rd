@@ -8,7 +8,7 @@ This data set corresponds to some financial variables of 85396 industrial compan
 \seealso{
 \code{\link{Lucy}, \link{BigCity}}
 }
-\usage{BigLucy}
+\usage{data(BigLucy)}
 \format{
   \describe{
 \item{ID}{The identifier of the company. It correspond to an alphanumeric sequence (two letters and three digits)}

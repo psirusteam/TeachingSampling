@@ -8,7 +8,7 @@ This data set corresponds to some variables from 150266 people of a city in a pa
 \seealso{
 \code{\link{Lucy}, \link{BigLucy}}
 }
-\usage{BigLucy}
+\usage{data(BigCity)}
 \format{
   \describe{
 \item{HHID}{The identifier of the household. It corresponds to an alphanumeric sequence (four letters and five digits).}
