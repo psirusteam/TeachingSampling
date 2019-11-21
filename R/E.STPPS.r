@@ -37,9 +37,9 @@ E.STPPS<-function(y,pk,mh,S){
     Strata[1,,][(length(mh)+1),][i]<-sum(Strata[,,i][1,][1:length(mh)])
     Strata[2,,][(length(mh)+1),][i]<-sqrt(sum(Strata[,,i][2,][1:length(mh)]^2))
     Strata[3,,][(length(mh)+1),][i]<-100*sqrt(Strata[2,,][(length(mh)+1),][i])/Strata[1,,][(length(mh)+1),][i]
-    N=Strata[1,4,1]
+    N <- Strata[1, "Population", "N"]
     VMAST<-(N^2)*(1-(m/N))*var(y[,i])/(m)
-    Strata[4,,][(length(mh)+1),][i]<-(Strata[2,,][(length(mh)+1),][i])/(VMAST)
+    Strata[4,,][(length(mh)+1),][i]<-(Strata[2,,][(length(mh)+1),][i]^2)/(VMAST)
   }
   return(Strata)
 }

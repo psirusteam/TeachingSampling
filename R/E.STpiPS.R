@@ -50,7 +50,7 @@ E.STpiPS <- function(y, pik, S) {
     N <- sum(1/pik)
     n <- sum(nh)
     VMAST <- (N^2) * (1 - (n/N)) * var(y[, i])/(n)
-    Strata[4, , ][(length(nh) + 1), ][i] <- (Strata[2, , ][(length(nh) + 1), ][i])/(VMAST)
+    Strata[4, , ][(length(nh) + 1), ][i] <- (Strata[2, , ][(length(nh) + 1), ][i]^2)/(VMAST)
   }
   return(Strata)
 }
