@@ -3,7 +3,7 @@
 \alias{BigCity}
 \title{Full Person-level Population Database}
 \description{
-This data set corresponds to some variables from 150266 people of a city in a particular year.
+This data set corresponds to some socioeconomic variables from 150266 people of a city in a particular year.
 }
 \seealso{
 \code{\link{Lucy}, \link{BigLucy}}
