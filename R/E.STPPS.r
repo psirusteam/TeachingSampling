@@ -19,7 +19,7 @@ E.STPPS<-function(y,pk,mh,S){
     pke<-pk[e,]
     ye<-as.matrix(ye)
     tye<-matrix(1,1,dim(ye)[1])%*%(ye/pke)/mh[k]
-    tye2<-t(matrix(tye,dim(y)[2],mh[k]))
+    tye2<-t(matrix(tye,dim(ye)[2],mh[k]))
     Vtye<-(1/mh[k])*(1/(mh[k]-1))*colSums((ye/pke-tye2)^2)
     CVe<-100*sqrt(Vtye)/tye
     Nh<-(1/mh[k])*sum(1/pke)
@@ -36,7 +36,7 @@ E.STPPS<-function(y,pk,mh,S){
   for(i in 1:dim(y)[2]){
     Strata[1,,][(length(mh)+1),][i]<-sum(Strata[,,i][1,][1:length(mh)])
     Strata[2,,][(length(mh)+1),][i]<-sqrt(sum(Strata[,,i][2,][1:length(mh)]^2))
-    Strata[3,,][(length(mh)+1),][i]<-100*sqrt(Strata[2,,][(length(mh)+1),][i])/Strata[1,,][(length(mh)+1),][i]
+    Strata[3,,][(length(mh)+1),][i]<-100*Strata[2,,][(length(mh)+1),][i]/Strata[1,,][(length(mh)+1),][i]
     N <- Strata[1, "Population", "N"]
     VMAST<-(N^2)*(1-(m/N))*var(y[,i])/(m)
     Strata[4,,][(length(mh)+1),][i]<-(Strata[2,,][(length(mh)+1),][i]^2)/(VMAST)
