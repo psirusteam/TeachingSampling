@@ -2,12 +2,14 @@ Package: TeachingSampling
 Type: Package
 Title: Selection of Samples and Parameter Estimation in Finite Population
 License: GPL (>= 2)
-Version: 3.6.5
+Version: 3.8.0
 Date: 2019-11-18
 Author: Hugo Andres Gutierrez Rojas <hagutierrezro@gmail.com>
 Maintainer: Hugo Andres Gutierrez Rojas <hagutierrezro@gmail.com>
 Depends:
-    R (>= 3.1)
+    R (>= 3.5),
+    dplyr,
+    magrittr
 Description: Allows the user to draw probabilistic samples and make inferences from a finite population based on several sampling designs.
-Encoding: latin1
-RoxygenNote: 7.0.0
+Encoding: UTF-8
+RoxygenNote: 7.0.1
