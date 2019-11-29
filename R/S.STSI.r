@@ -16,6 +16,6 @@ if(k>1){
 sam[(cum[k-1]+1):(cum[k])]<-h[sam.h]
 }
 }
-sam
+sort(sam)
 }
 
