@@ -65,24 +65,33 @@ sampleI <- UI[samI]
 FrameII <- left_join(sizes, BigCity[which(BigCity$PSU \%in\% sampleI), ])
 attach(FrameII)
 
-Ni <- as.vector(table(FrameII$PSU))
-ni <- ceiling(Ni * 0.15)
+HHdb <- FrameII \%>\% 
+        group_by(PSU) \%>\%
+        summarise(Ni = length(unique(HHID)))
+        
+Ni <- as.numeric(HHdb$Ni)
+ni <- ceiling(Ni * 0.1)
 ni
 sum(ni)
 
 sam = S.SI(Ni[1], ni[1])
-cluster = FrameII[which(FrameII$PSU == sampleI[1]), ]
-cluster$dki <- Ni[1]/ni[1]
-data = cluster[sam, ]
+clusterII = FrameII[which(FrameII$PSU == sampleI[1]), ]
+sam.HH <- data.frame(HHID = unique(clusterII$HHID)[sam])
+clusterHH <- left_join(sam.HH, clusterII, by = "HHID") 
+clusterHH$dki <- Ni[1]/ni[1]
+clusterHH$dk <- clusterHH$dI * clusterHH$dki
+data = clusterHH
 for (i in 2:length(Ni)) {
       sam = S.SI(Ni[i], ni[i])
-      cluster = FrameII[which(FrameII$PSU == sampleI[i]), ]
-      cluster$dki <- Ni[i]/ni[i]
-      data1 = cluster[sam, ]
+      clusterII = FrameII[which(FrameII$PSU == sampleI[i]), ]
+      sam.HH <- data.frame(HHID = unique(clusterII$HHID)[sam])
+      clusterHH <- left_join(sam.HH, clusterII, by = "HHID") 
+      clusterHH$dki <- Ni[i]/ni[i]
+      clusterHH$dk <- clusterHH$dI * clusterHH$dki
+      data1 = clusterHH
       data = rbind(data, data1)
 }
 
-data$dk <- data$dI * data$dki
 sum(data$dk)
 attach(data)
 estima <- data.frame(Income, Expenditure)
@@ -133,7 +142,7 @@ ni <- 5
 sam = S.SI(Ni[1], ni)
 clusterII = FrameII[which(FrameII$PSU == sampleI$PSU[1]), ]
 sam.HH <- data.frame(HHID = unique(clusterII$HHID)[sam])
-clusterHH <- left_join(sam.HH, clusterII) 
+clusterHH <- left_join(sam.HH, clusterII, by = "HHID") 
 clusterHH$dki <- Ni[1]/ni
 clusterHH$dk <- clusterHH$dI * clusterHH$dki
 data = clusterHH
