@@ -37,7 +37,8 @@ the estimated parameters of the variables of interest.
 \examples{
 
 #############################
-## Example 1: Two-stage SI ##
+## Example 1:              ##
+## Stratified Two-stage SI ##
 #############################
 
 data('BigCity')
@@ -51,13 +52,13 @@ attach(FrameI)
 
 sizes = FrameI \%>\% group_by(Stratum) \%>\%
         summarise(NIh = n(),
-        mIh = 2,
-        dI = NIh/mIh)
+        nIh = 2,
+        dI = NIh/nIh)
         
 NIh <- sizes$NIh
-mIh <- sizes$mIh
+nIh <- sizes$nIh
 
-samI <- S.STSI(Stratum, NIh, mIh)
+samI <- S.STSI(Stratum, NIh, nIh)
 UI <- levels(as.factor(FrameI$PSU))
 sampleI <- UI[samI]
           
@@ -82,6 +83,71 @@ for (i in 2:length(Ni)) {
 }
 
 data$dk <- data$dI * data$dki
+sum(data$dk)
+attach(data)
+estima <- data.frame(Income, Expenditure)
+area <- as.factor(PSU)
+stratum <- as.factor(Stratum)
+
+E.UC(stratum, area, dk, estima)
+
+################################
+## Example 2:                 ##
+## Self weighted Two-stage SI ##
+################################
+
+data('BigCity')
+FrameI <- BigCity \%>\% group_by(PSU) \%>\%
+summarise(Stratum = unique(Stratum),
+          Households = length(unique(HHID)),
+          Income = sum(Income),
+          Expenditure = sum(Expenditure))
+            
+attach(FrameI)
+
+sizes = FrameI \%>\% group_by(Stratum) \%>\%
+        summarise(NIh = n(),
+        nIh = 2)
+        
+NIh <- sizes$NIh
+nIh <- sizes$nIh
+
+resI <- S.STpiPS(Stratum, Households, nIh)
+head(resI)
+samI <- resI[, 1]
+piI <- resI[, 2]
+UI <- levels(as.factor(FrameI$PSU))
+sampleI <- data.frame(PSU = UI[samI], dI = 1/piI) 
+ 
+FrameII <- left_join(sampleI, 
+           BigCity[which(BigCity$PSU \%in\% sampleI[,1]), ])
+           
+attach(FrameII)
+
+HHdb <- FrameII \%>\% 
+        group_by(PSU) \%>\%
+        summarise(Ni = length(unique(HHID)))
+Ni <- as.numeric(HHdb$Ni)
+ni <- 5
+
+sam = S.SI(Ni[1], ni)
+clusterII = FrameII[which(FrameII$PSU == sampleI$PSU[1]), ]
+sam.HH <- data.frame(HHID = unique(clusterII$HHID)[sam])
+clusterHH <- left_join(sam.HH, clusterII) 
+clusterHH$dki <- Ni[1]/ni
+clusterHH$dk <- clusterHH$dI * clusterHH$dki
+data = clusterHH
+for (i in 2:length(Ni)) {
+      sam = S.SI(Ni[i], ni)
+      clusterII = FrameII[which(FrameII$PSU == sampleI$PSU[i]), ]
+      sam.HH <- data.frame(HHID = unique(clusterII$HHID)[sam])
+      clusterHH <- left_join(sam.HH, clusterII, by = "HHID") 
+      clusterHH$dki <- Ni[i]/ni
+      clusterHH$dk <- clusterHH$dI * clusterHH$dki
+      data1 = clusterHH
+      data = rbind(data, data1)
+}
+
 sum(data$dk)
 attach(data)
 estima <- data.frame(Income, Expenditure)
