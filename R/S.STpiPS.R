@@ -5,7 +5,6 @@ S.STpiPS<-function(S, x, nh)
   S<-as.factor(S)
   S<-as.factor(as.integer(S))
   res<-matrix(NA, nrow = sum(nh), ncol=2)
-  pk<-matrix(NA,sum(nh))
   cum<-cumsum(nh)
   
   for(k in 1: length(nh)){
@@ -22,5 +21,5 @@ S.STpiPS<-function(S, x, nh)
       res[(cum[k-1]+1):(cum[k]),2]<-pik.h
     }
   }
-  res
+  res[order(res[, 1]), ]
 }
