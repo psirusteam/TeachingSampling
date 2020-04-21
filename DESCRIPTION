@@ -12,4 +12,4 @@ Depends:
     magrittr
 Description: Allows the user to draw probabilistic samples and make inferences from a finite population based on several sampling designs.
 Encoding: UTF-8
-RoxygenNote: 7.0.1
+RoxygenNote: 7.1.0
