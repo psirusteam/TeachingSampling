@@ -55,12 +55,17 @@ p <- c(0.13, 0.2, 0.15, 0.1, 0.15, 0.04, 0.02, 0.06, 0.07, 0.08)
 VarSYGHT(y1, N, n, p)
 VarSYGHT(y2, N, n, p)
 
-# Unbiasedness holds
+# Unbiasedness holds in the estimator of the total
+sum(y1)
+sum(VarSYGHT(y1, N, n, p)$p * VarSYGHT(y1, N, n, p)$Est.HT)
+sum(y2)
+sum(VarSYGHT(y2, N, n, p)$p * VarSYGHT(y2, N, n, p)$Est.HT)
+
+# Unbiasedness also holds in the two variances
 VarHT(y1, N, n, p)
 sum(VarSYGHT(y1, N, n, p)$p * VarSYGHT(y1, N, n, p)$Est.Var1)
 sum(VarSYGHT(y1, N, n, p)$p * VarSYGHT(y1, N, n, p)$Est.Var2)
 
-# Unbiasedness holds
 VarHT(y2, N, n, p)
 sum(VarSYGHT(y2, N, n, p)$p * VarSYGHT(y2, N, n, p)$Est.Var1)
 sum(VarSYGHT(y2, N, n, p)$p * VarSYGHT(y2, N, n, p)$Est.Var2)
@@ -74,7 +79,11 @@ p = c(0.31, 0.20, 0.14, 0.03, 0.01, 0.31)
 
 VarSYGHT(x, N, n, p)
 
-# Unbiasedness holds
+# Unbiasedness holds in the estimator of the total
+sum(x)
+sum(VarSYGHT(x, N, n, p)$p * VarSYGHT(x, N, n, p)$Est.HT)
+
+# Unbiasedness also holds in the two variances
 VarHT(x, N, n, p)
 sum(VarSYGHT(x, N, n, p)$p * VarSYGHT(x, N, n, p)$Est.Var1)
 sum(VarSYGHT(x, N, n, p)$p * VarSYGHT(x, N, n, p)$Est.Var2)

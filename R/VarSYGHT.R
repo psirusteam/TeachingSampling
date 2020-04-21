@@ -49,13 +49,18 @@
 #' # Calculates the estimated variance for the HT estimator
 #' VarSYGHT(y1, N, n, p)
 #' VarSYGHT(y2, N, n, p)
+#'
+#' # Unbiasedness holds in the estimator of the total
+#' sum(y1)
+#' sum(VarSYGHT(y1, N, n, p)$p * VarSYGHT(y1, N, n, p)$Est.HT)
+#' sum(y2)
+#' sum(VarSYGHT(y2, N, n, p)$p * VarSYGHT(y2, N, n, p)$Est.HT)
 #' 
-#' # Unbiasedness holds
+#' # Unbiasedness also holds in the two variances
 #' VarHT(y1, N, n, p)
 #' sum(VarSYGHT(y1, N, n, p)$p * VarSYGHT(y1, N, n, p)$Est.Var1)
 #' sum(VarSYGHT(y1, N, n, p)$p * VarSYGHT(y1, N, n, p)$Est.Var2)
 #' 
-#' # Unbiasedness holds
 #' VarHT(y2, N, n, p)
 #' sum(VarSYGHT(y2, N, n, p)$p * VarSYGHT(y2, N, n, p)$Est.Var1)
 #' sum(VarSYGHT(y2, N, n, p)$p * VarSYGHT(y2, N, n, p)$Est.Var2)
@@ -66,10 +71,14 @@
 #' N = 4
 #' n = 2
 #' p = c(0.31, 0.20, 0.14, 0.03, 0.01, 0.31)
-#' 
+#'
 #' VarSYGHT(x, N, n, p)
 #' 
-#' # Unbiasedness holds
+#' # Unbiasedness holds in the estimator of the total
+#' sum(x)
+#' sum(VarSYGHT(x, N, n, p)$p * VarSYGHT(x, N, n, p)$Est.HT)
+#' 
+#' # Unbiasedness also holds in the two variances
 #' VarHT(x, N, n, p)
 #' sum(VarSYGHT(x, N, n, p)$p * VarSYGHT(x, N, n, p)$Est.Var1)
 #' sum(VarSYGHT(x, N, n, p)$p * VarSYGHT(x, N, n, p)$Est.Var2)
@@ -92,12 +101,13 @@ VarSYGHT <- function (y, N, n, p)
   }
   B <- (Delta/pi2) * MatDif
   
-  Est.Var1 = Est.Var2 = NULL
+  Est.Var1 = Est.Var2 = Est.HT =NULL
   for(i in 1:Q){
     index = which(Ind[i,] != 0)
+    Est.HT[i] = HT(y[index], pi1[index])
     Est.Var1[i] = sum(A[index, index])
     Est.Var2[i] = - (1/2) * sum(B[index, index])
   }
-  Resultado <- data.frame(I = Ind, p = p, Est.Var1 = Est.Var1, Est.Var2 = Est.Var2)
+  Resultado <- data.frame(I = Ind, p = p, Est.HT = Est.HT, Est.Var1 = Est.Var1, Est.Var2 = Est.Var2)
   return(Resultado)
 }
